@@ -1,16 +1,16 @@
 const CACHE = 'protein-app-v1';
 const ASSETS = [
-  './',
-  './index.html',
-  './about.html',
-  './todolist.html',
-  './feedback.html',
-  './offline.html',
-  './style.css',
-  './script.js',
-  './manifest.json',
-  './icons/icon-192.png',
-  './icons/icon-512.png'
+  '/protein-pwa/',
+  '/protein-pwa/index.html',
+  '/protein-pwa/about.html',
+  '/protein-pwa/todolist.html',
+  '/protein-pwa/feedback.html',
+  '/protein-pwa/offline.html',
+  '/protein-pwa/style.css',
+  '/protein-pwa/script.js',
+  '/protein-pwa/manifest.json',
+  '/protein-pwa/icons/icon-192.png',
+  '/protein-pwa/icons/icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -42,7 +42,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       caches.match(req).then((cached) => {
         if (cached) return cached;
-        return fetch(req).catch(() => caches.match('/offline.html'));
+        return fetch(req).catch(() => caches.match('/protein-pwa/offline.html'));
       })
     );
     return;
