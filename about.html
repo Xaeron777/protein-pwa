@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О белке</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#336699">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icons/icon-192.png">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Высокобелковые продукты</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">О белке</a></li>
+                    <li><a href="feedback.html">Обратная связь</a></li>
+                    <li><a href="todolist.html">Список задач</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>О белке</h1>
+
+        <div class="info-block">
+            <h2>Функции белка в организме</h2>
+            <ul>
+                <li>Строительная — участвует в формировании мышц, кожи, волос</li>
+                <li>Ферментативная — входит в состав большинства ферментов</li>
+                <li>Транспортная — переносит вещества в крови (например, гемоглобин)</li>
+                <li>Защитная — антитела имеют белковую природу</li>
+                <li>Регуляторная — некоторые гормоны являются белками</li>
+            </ul>
+        </div>
+
+        <div class="info-block">
+            <h2>Суточная норма потребления</h2>
+            <p>Количество белка, необходимое человеку, зависит от возраста, пола и физической активности.</p>
+            <ul>
+                <li>Взрослый человек без активных нагрузок: 0,8–1 г на 1 кг веса</li>
+                <li>При силовых тренировках: 1,6–2,2 г на 1 кг веса</li>
+                <li>При снижении массы тела: 1,8–2,5 г на 1 кг веса</li>
+            </ul>
+        </div>
+
+        <div class="info-block">
+            <h2>Содержание белка в продуктах</h2>
+            <p>В таблице приведены значения для наиболее распространённых продуктов (на 100 г съедобной части).</p>
+            <table>
+                <tr>
+                    <th>Продукт</th>
+                    <th>Белок, г</th>
+                    <th>Происхождение</th>
+                </tr>
+                <tr><td>Куриная грудка</td><td>31</td><td>Животное</td></tr>
+                <tr><td>Говядина постная</td><td>26</td><td>Животное</td></tr>
+                <tr><td>Тунец</td><td>25</td><td>Животное</td></tr>
+                <tr><td>Чечевица</td><td>24</td><td>Растительное</td></tr>
+                <tr><td>Лосось</td><td>22</td><td>Животное</td></tr>
+                <tr><td>Творог обезжиренный</td><td>18</td><td>Животное</td></tr>
+                <tr><td>Яйца куриные</td><td>13</td><td>Животное</td></tr>
+                <tr><td>Соя</td><td>36</td><td>Растительное</td></tr>
+                <tr><td>Арахис</td><td>26</td><td>Растительное</td></tr>
+                <tr><td>Фасоль</td><td>21</td><td>Растительное</td></tr>
+            </table>
+        </div>
+    </main>
+
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+        try {
+            const reg = await navigator.serviceWorker.register('/service-worker.js');
+            console.log('SW registered', reg.scope);
+        } catch (err) {
+            console.error('SW failed', err);
+        }
+    });
+}
+</script>
+</body>
+</html>

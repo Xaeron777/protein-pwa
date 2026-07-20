@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Список задач</title>
+<link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#336699">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/icons/icon-192.png">
+<style>
+    .todo-box {
+        background: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .add-form {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+    .add-form input[type="text"] {
+        flex: 2;
+        min-width: 200px;
+    }
+    .add-form input[type="date"],
+    .add-form select {
+        flex: 1;
+        min-width: 120px;
+    }
+    .add-form input, .add-form select {
+        padding: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+    .controls {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+        align-items: center;
+    }
+    button {
+        background-color: #336699;
+        color: #fff;
+        border: none;
+        padding: 8px 14px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    button:hover {
+        background-color: #264d73;
+    }
+    button.danger {
+        background-color: #993333;
+    }
+    button.danger:hover {
+        background-color: #661f1f;
+    }
+    .task {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 8px;
+        background: #fafafa;
+    }
+    .task.done {
+        background: #eee;
+        color: #888;
+    }
+    .task.done .task-text {
+        text-decoration: line-through;
+    }
+    .task.priority-high {
+        border-left: 4px solid #993333;
+    }
+    .task.priority-medium {
+        border-left: 4px solid #cc8800;
+    }
+    .task.priority-low {
+        border-left: 4px solid #339933;
+    }
+    .task-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .task-head input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+    }
+    .task-text {
+        flex: 1;
+        font-weight: bold;
+    }
+    .task-meta {
+        font-size: 13px;
+        color: #666;
+        margin-top: 5px;
+        margin-left: 56px;
+    }
+    .task-actions {
+        margin-top: 8px;
+        margin-left: 56px;
+        display: flex;
+        gap: 5px;
+    }
+    .task-actions button {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+    .status {
+        padding: 8px;
+        margin-bottom: 10px;
+        background: #e8f0f7;
+        border: 1px solid #336699;
+        display: none;
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <nav>
+            <a href="index.html" class="logo">Высокобелковые продукты</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О белке</a></li>
+                <li><a href="feedback.html">Обратная связь</a></li>
+                <li><a href="todolist.html">Список задач</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <h1>Список задач</h1>
+
+    <div class="todo-box">
+        <div id="status" class="status"></div>
+
+        <h2>Добавить задачу</h2>
+        <div class="add-form">
+            <input type="text" id="taskText" placeholder="Текст задачи">
+            <input type="date" id="taskDate">
+            <select id="taskPriority">
+                <option value="medium">Средний</option>
+                <option value="high">Высокий</option>
+                <option value="low">Низкий</option>
+            </select>
+            <button onclick="addTask()">Добавить</button>
+        </div>
+
+        <h2>Управление</h2>
+        <div class="controls">
+            <button onclick="deleteSelected()">Удалить выделенные</button>
+            <button onclick="sortByProximity()">Ближайшие</button>
+            <button onclick="sortByDateAsc()">По дате ↑</button>
+            <button onclick="sortByDateDesc()">По дате ↓</button>
+            <select id="filterPriority" onchange="render()">
+                <option value="all">Все приоритеты</option>
+                <option value="high">Высокий</option>
+                <option value="medium">Средний</option>
+                <option value="low">Низкий</option>
+            </select>
+            <input type="date" id="filterDate" onchange="render()">
+            <button onclick="clearDateFilter()">Сбросить дату</button>
+        </div>
+
+        <h2>Задачи</h2>
+        <div id="taskList"></div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+        try {
+            const reg = await navigator.serviceWorker.register('/service-worker.js');
+            console.log('SW registered', reg.scope);
+        } catch (err) {
+            console.error('SW failed', err);
+        }
+    });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Высокобелковые продукты</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#336699">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icons/icon-192.png">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Высокобелковые продукты</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="about.html">О белке</a></li>
+                    <li><a href="feedback.html">Обратная связь</a></li>
+                    <li><a href="todolist.html">Список задач</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Высокобелковые продукты</h1>
+
+        <div class="intro">
+            <img src="images/meat.png" alt="Продукты с высоким содержанием белка" style="max-width: 100%; height: auto; margin-bottom: 15px; border: 1px solid #ddd;">
+            <p>На данной странице собраны основные продукты с высоким содержанием белка. Белок необходим организму для построения мышц, восстановления тканей и нормальной работы иммунной системы. Ниже приведены наиболее распространённые источники белка животного и растительного происхождения.</p>
+        </div>
+
+        <h2>Основные источники белка</h2>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Куриная грудка</h3>
+                <p>Один из самых популярных продуктов в спортивном питании. Содержит мало жира и много легкоусвояемого белка.</p>
+                <span class="value">31 г на 100 г</span>
+            </div>
+
+            <div class="card">
+                <h3>Говядина</h3>
+                <p>Источник не только белка, но и железа, цинка и витаминов группы B. Лучше выбирать постные части.</p>
+                <span class="value">26 г на 100 г</span>
+            </div>
+
+            <div class="card">
+                <h3>Тунец</h3>
+                <p>Рыба с высоким содержанием белка и низким содержанием жира. Также богата омега-3 кислотами.</p>
+                <span class="value">25 г на 100 г</span>
+            </div>
+
+            <div class="card">
+                <h3>Творог</h3>
+                <p>Содержит казеин — медленно усваиваемый белок. Подходит для употребления перед сном.</p>
+                <span class="value">18 г на 100 г</span>
+            </div>
+
+            <div class="card">
+                <h3>Яйца</h3>
+                <p>Считаются эталоном по усвояемости. Белок яйца содержит все незаменимые аминокислоты.</p>
+                <span class="value">13 г на 100 г</span>
+            </div>
+
+            <div class="card">
+                <h3>Чечевица</h3>
+                <p>Один из лучших растительных источников белка. Также богата клетчаткой и медленными углеводами.</p>
+                <span class="value">24 г на 100 г</span>
+            </div>
+        </div>
+    </main>
+
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+        try {
+            const reg = await navigator.serviceWorker.register('/service-worker.js');
+            console.log('SW registered', reg.scope);
+        } catch (err) {
+            console.error('SW failed', err);
+        }
+    });
+}
+</script>
+</body>
+</html>
