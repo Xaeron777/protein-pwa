@@ -1,16 +1,16 @@
 const CACHE = 'protein-app-v1';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/about.html',
-  '/todolist.html',
-  '/feedback.html',
-  '/offline.html',
-  '/style.css',
-  '/script.js',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  './',
+  './index.html',
+  './about.html',
+  './todolist.html',
+  './feedback.html',
+  './offline.html',
+  './style.css',
+  './script.js',
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
