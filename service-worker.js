@@ -62,3 +62,28 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+
+self.addEventListener('push', (event) => {
+  const data = event.data?.json() || {};
+  event.waitUntil(
+    self.registration.showNotification(data.title || 'Возвращайтесь снова!', {
+      body: data.body || 'Мы скучаем по вам! Загляните в приложение.',
+      icon: '/protein-pwa/icons/icon-192.png',
+      data: { url: data.url || '/protein-pwa/' }
+    })
+  );
+});
+
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const url = event.notification.data?.url || '/protein-pwa/';
+  event.waitUntil(
+    clients.matchAll({ type: 'window' }).then((windows) => {
+      for (const win of windows) {
+        if (win.url === url) return win.focus();
+      }
+      return clients.openWindow(url);
+    })
+  );
+});

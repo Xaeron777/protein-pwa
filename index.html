@@ -31,6 +31,12 @@
             <img src="images/meat.png" alt="Продукты с высоким содержанием белка" style="max-width: 100%; height: auto; margin-bottom: 15px; border: 1px solid #ddd;">
             <p>На данной странице собраны основные продукты с высоким содержанием белка. Белок необходим организму для построения мышц, восстановления тканей и нормальной работы иммунной системы. Ниже приведены наиболее распространённые источники белка животного и растительного происхождения.</p>
         </div>
+		
+		<div style="margin: 20px 0; padding: 15px; background: #fff; border: 1px solid #ddd;">
+			<h3>Push-уведомления</h3>
+			<button id="pushToggle" onclick="togglePush()">Включить уведомления</button>
+			<p id="pushStatus" style="font-size: 13px; color: #666; margin-top: 8px;">Статус: неизвестно</p>
+		</div>
 
         <h2>Основные источники белка</h2>
 
@@ -84,6 +90,57 @@ if ('serviceWorker' in navigator) {
         }
     });
 }
+</script>
+<script>
+async function togglePush() {
+    const btn = document.getElementById('pushToggle');
+    const status = document.getElementById('pushStatus');
+    
+    if (!('Notification' in window)) {
+        status.textContent = 'Браузер не поддерживает уведомления';
+        return;
+    }
+    
+    const reg = await navigator.serviceWorker.ready;
+    const sub = await reg.pushManager.getSubscription();
+    
+    if (sub) {
+        await sub.unsubscribe();
+        localStorage.setItem('pushEnabled', 'false');
+        btn.textContent = 'Включить уведомления';
+        status.textContent = 'Статус: отключены';
+    } else {
+        
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+            
+            
+            localStorage.setItem('pushEnabled', 'true');
+            btn.textContent = 'Отключить уведомления';
+            status.textContent = 'Статус: включены (тест через DevTools → Push)';
+        } else {
+            status.textContent = 'Статус: разрешение отклонено';
+        }
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const btn = document.getElementById('pushToggle');
+    const status = document.getElementById('pushStatus');
+    if (!btn || !status) return;
+    
+    const reg = await navigator.serviceWorker.ready;
+    const sub = await reg.pushManager.getSubscription();
+    
+    if (sub || localStorage.getItem('pushEnabled') === 'true') {
+        btn.textContent = 'Отключить уведомления';
+        status.textContent = 'Статус: включены (тест через DevTools → Push)';
+    } else {
+        btn.textContent = 'Включить уведомления';
+        status.textContent = 'Статус: отключены';
+    }
+});
 </script>
 </body>
 </html>
