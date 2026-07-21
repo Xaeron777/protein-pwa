@@ -68,12 +68,22 @@ self.addEventListener('fetch', event => {
   );
 });
 
-self.addEventListener('push', event => {
-  const data = event.data ? event.data.json() : {};
+self.addEventListener('push', (event) => {
+  let data = {};
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch (e) {
+    data = {
+      title: 'Возвращайтесь!',
+      body: event.data ? event.data.text() : 'Заходи в приложение'
+    };
+  }
+  
   event.waitUntil(
     self.registration.showNotification(data.title || 'Возвращайтесь!', {
       body: data.body || 'Заходи в приложение',
       icon: '/protein-pwa/icons/icon-192.png',
+      badge: '/protein-pwa/icons/icon-192.png',
       data: { url: data.url || '/protein-pwa/' }
     })
   );
