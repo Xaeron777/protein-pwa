@@ -1,4 +1,5 @@
 const CACHE = 'protein-app-v1';
+
 const ASSETS = [
   '/protein-pwa/',
   '/protein-pwa/index.html',
@@ -63,12 +64,14 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
+
 self.addEventListener('push', (event) => {
-  const data = event.data?.json() || {};
+  const data = event.data ? event.data.json() : {};
   event.waitUntil(
     self.registration.showNotification(data.title || 'Возвращайтесь снова!', {
       body: data.body || 'Мы скучаем по вам! Загляните в приложение.',
       icon: '/protein-pwa/icons/icon-192.png',
+      badge: '/protein-pwa/icons/icon-192.png',
       data: { url: data.url || '/protein-pwa/' }
     })
   );
@@ -77,7 +80,7 @@ self.addEventListener('push', (event) => {
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  const url = event.notification.data?.url || '/protein-pwa/';
+  const url = event.notification.data ? event.notification.data.url : '/protein-pwa/';
   event.waitUntil(
     clients.matchAll({ type: 'window' }).then((windows) => {
       for (const win of windows) {
@@ -86,4 +89,16 @@ self.addEventListener('notificationclick', (event) => {
       return clients.openWindow(url);
     })
   );
+});
+
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'TEST_PUSH') {
+    self.registration.showNotification(event.data.title || 'Возвращайтесь снова!', {
+      body: event.data.body || 'Мы скучаем по вам! Загляните в приложение.',
+      icon: '/protein-pwa/icons/icon-192.png',
+      badge: '/protein-pwa/icons/icon-192.png',
+      data: { url: '/protein-pwa/' }
+    });
+  }
 });
