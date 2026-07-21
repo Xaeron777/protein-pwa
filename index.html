@@ -126,9 +126,9 @@ async function togglePush() {
             localStorage.setItem('pushEnabled', 'true');
             btn.textContent = 'Отключить уведомления';
             testBtn.style.display = 'inline-block';
-            status.textContent = 'Уведомления включены. Нажми "Тест" для проверки.';
+            status.textContent = 'Уведомления включены. Нажмите "Тест"';
         } else {
-            status.textContent = 'Разрешение отклонено. Разрешите уведомления в настройках браузера.';
+            status.textContent = 'Разрешение отклонено';
         }
     }
 }
@@ -156,11 +156,11 @@ async function updatePushUI() {
     if (sub || localStorage.getItem('pushEnabled') === 'true') {
         btn.textContent = 'Отключить уведомления';
         testBtn.style.display = 'inline-block';
-        status.textContent = 'Уведомления включены. Нажмите "Тест" для проверки.';
+        status.textContent = 'Уведомления включены. Нажмите "Тест"';
     } else {
         btn.textContent = 'Включить уведомления';
-        testBtn.style.display = 'none';
-        status.textContent = '';
+        testBtn.style.display = 'inline-block';
+        status.textContent = 'Уведомления отключены';
     }
 }
 
