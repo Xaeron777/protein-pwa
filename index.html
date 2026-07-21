@@ -1,175 +1,177 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Высокобелковые продукты</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="theme-color" content="#336699">
-    <link rel="manifest" href="/protein-pwa/manifest.json">
-    <link rel="icon" href="/protein-pwa/icons/icon-192.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Высокобелковые продукты</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#336699">
+  <link rel="manifest" href="/protein-pwa/manifest.json">
+  <link rel="icon" href="/protein-pwa/icons/icon-192.png">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo">Высокобелковые продукты</a>
-                <ul class="nav-links">
-                    <li><a href="index.html">Главная</a></li>
-                    <li><a href="about.html">О белке</a></li>
-                    <li><a href="feedback.html">Обратная связь</a></li>
-                    <li><a href="todolist.html">Список задач</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="index.html" class="logo">Высокобелковые продукты</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="about.html">О белке</a></li>
+          <li><a href="feedback.html">Обратная связь</a></li>
+          <li><a href="todolist.html">Список задач</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <main class="container">
-        <h1>Высокобелковые продукты</h1>
+  <main class="container">
+    <h1>Высокобелковые продукты</h1>
 
-        <div style="background: #fff; padding: 15px; border: 1px solid #ddd; margin-bottom: 20px;">
-            <h3>Push-уведомления</h3>
-            <button id="pushBtn" onclick="togglePush()" style="padding: 8px 16px; font-size: 14px; cursor: pointer;">Включить уведомления</button>
-            <button id="testPushBtn" onclick="testPush()" style="padding: 8px 16px; font-size: 14px; cursor: pointer; margin-left: 10px; display: none;">Тест: "Возвращайтесь снова!"</button>
-            <p id="pushStatus" style="font-size: 13px; color: #666; margin-top: 8px;"></p>
-        </div>
+    <div style="background:#fff;padding:15px;border:1px solid #ddd;margin-bottom:20px;">
+      <h3>Push-уведомления</h3>
+      <button id="pushBtn" onclick="togglePush()" style="padding:8px 16px;font-size:14px;cursor:pointer;">
+        Включить уведомления
+      </button>
+      <button id="testBtn" onclick="testPush()" style="padding:8px 16px;font-size:14px;cursor:pointer;margin-left:10px;display:none;">
+        Тест уведомления
+      </button>
+      <p id="pushStatus" style="font-size:13px;color:#666;margin-top:8px;"></p>
+    </div>
 
-        <div class="intro">
-            <img src="images/meat.png" alt="Продукты с высоким содержанием белка" style="max-width: 100%; height: auto; margin-bottom: 15px; border: 1px solid #ddd;">
-            <p>На данной странице собраны основные продукты с высоким содержанием белка. Белок необходим организму для построения мышц, восстановления тканей и нормальной работы иммунной системы. Ниже приведены наиболее распространённые источники белка животного и растительного происхождения.</p>
-        </div>
+    <div class="intro">
+      <img src="images/meat.png" alt="Продукты с высоким содержанием белка" style="max-width:100%;height:auto;margin-bottom:15px;border:1px solid #ddd;">
+      <p>
+        На данной странице собраны основные продукты с высоким содержанием белка.
+        Белок необходим организму для построения мышц, восстановления тканей и нормальной работы иммунной системы.
+        Ниже приведены наиболее распространённые источники белка животного и растительного происхождения.
+      </p>
+    </div>
 
-        <h2>Основные источники белка</h2>
+    <h2>Основные источники белка</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Куриная грудка</h3>
+        <p>Один из самых популярных продуктов в спортивном питании. Содержит мало жира и много легкоусвояемого белка.</p>
+        <span class="value">31 г на 100 г</span>
+      </div>
+      <div class="card">
+        <h3>Говядина</h3>
+        <p>Источник не только белка, но и железа, цинка и витаминов группы B. Лучше выбирать постные части.</p>
+        <span class="value">26 г на 100 г</span>
+      </div>
+      <div class="card">
+        <h3>Тунец</h3>
+        <p>Рыба с высоким содержанием белка и низким содержанием жира. Также богата омега-3 кислотами.</p>
+        <span class="value">25 г на 100 г</span>
+      </div>
+      <div class="card">
+        <h3>Творог</h3>
+        <p>Содержит казеин — медленно усваиваемый белок. Подходит для употребления перед сном.</p>
+        <span class="value">18 г на 100 г</span>
+      </div>
+      <div class="card">
+        <h3>Яйца</h3>
+        <p>Считаются эталоном по усвояемости. Белок яйца содержит все незаменимые аминокислоты.</p>
+        <span class="value">13 г на 100 г</span>
+      </div>
+      <div class="card">
+        <h3>Чечевица</h3>
+        <p>Один из лучших растительных источников белка. Также богата клетчаткой и медленными углеводами.</p>
+        <span class="value">24 г на 100 г</span>
+      </div>
+    </div>
+  </main>
 
-        <div class="cards">
-            <div class="card">
-                <h3>Куриная грудка</h3>
-                <p>Один из самых популярных продуктов в спортивном питании. Содержит мало жира и много легкоусвояемого белка.</p>
-                <span class="value">31 г на 100 г</span>
-            </div>
-
-            <div class="card">
-                <h3>Говядина</h3>
-                <p>Источник не только белка, но и железа, цинка и витаминов группы B. Лучше выбирать постные части.</p>
-                <span class="value">26 г на 100 г</span>
-            </div>
-
-            <div class="card">
-                <h3>Тунец</h3>
-                <p>Рыба с высоким содержанием белка и низким содержанием жира. Также богата омега-3 кислотами.</p>
-                <span class="value">25 г на 100 г</span>
-            </div>
-
-            <div class="card">
-                <h3>Творог</h3>
-                <p>Содержит казеин — медленно усваиваемый белок. Подходит для употребления перед сном.</p>
-                <span class="value">18 г на 100 г</span>
-            </div>
-
-            <div class="card">
-                <h3>Яйца</h3>
-                <p>Считаются эталоном по усвояемости. Белок яйца содержит все незаменимые аминокислоты.</p>
-                <span class="value">13 г на 100 г</span>
-            </div>
-
-            <div class="card">
-                <h3>Чечевица</h3>
-                <p>Один из лучших растительных источников белка. Также богата клетчаткой и медленными углеводами.</p>
-                <span class="value">24 г на 100 г</span>
-            </div>
-        </div>
-    </main>
-
-<script>
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', async () => {
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', async () => {
         try {
-            const reg = await navigator.serviceWorker.register('/protein-pwa/service-worker.js');
-            console.log('SW registered', reg.scope);
-            updatePushUI();
-        } catch (err) {
-            console.error('SW failed', err);
+          const registration = await navigator.serviceWorker.register('/protein-pwa/service-worker.js');
+          console.log('SW ok', registration.scope);
+          updateUI();
+        } catch (error) {
+          console.error('SW fail', error);
         }
-    });
-}
-
-async function togglePush() {
-    const btn = document.getElementById('pushBtn');
-    const testBtn = document.getElementById('testPushBtn');
-    const status = document.getElementById('pushStatus');
-
-    if (!('Notification' in window)) {
-        status.textContent = 'Браузер не поддерживает уведомления';
-        return;
+      });
     }
 
-    const reg = await navigator.serviceWorker.ready;
-    const sub = await reg.pushManager.getSubscription();
+    async function updateUI() {
+      const pushBtn = document.getElementById('pushBtn');
+      const testBtn = document.getElementById('testBtn');
+      const status = document.getElementById('pushStatus');
+      if (!pushBtn) return;
 
-    if (sub) {
-        await sub.unsubscribe();
-        localStorage.removeItem('pushEnabled');
-        btn.textContent = 'Включить уведомления';
+      const registration = await navigator.serviceWorker.ready;
+      const subscription = await registration.pushManager.getSubscription();
+
+      if (subscription) {
+        pushBtn.textContent = 'Отключить уведомления';
+        testBtn.style.display = 'inline-block';
+        status.textContent = 'Уведомления включены';
+      } else {
+        pushBtn.textContent = 'Включить уведомления';
         testBtn.style.display = 'none';
         status.textContent = 'Уведомления отключены';
-    } else {
+      }
+    }
+
+    async function togglePush() {
+      const pushBtn = document.getElementById('pushBtn');
+      const status = document.getElementById('pushStatus');
+
+      if (!('Notification' in window)) {
+        status.textContent = 'Браузер не поддерживает уведомления';
+        return;
+      }
+
+      const registration = await navigator.serviceWorker.ready;
+      const subscription = await registration.pushManager.getSubscription();
+
+      if (subscription) {
+        await subscription.unsubscribe();
+        status.textContent = 'Отключено';
+      } else {
         const permission = await Notification.requestPermission();
         if (permission === 'granted') {
-            try {
-                await reg.pushManager.subscribe({
-                    userVisibleOnly: true,
-                    applicationServerKey: urlBase64ToUint8Array('BEl62iSMfVj8mC8L_jK7yP9v1x8z5qQ3rT4uI6oP2aS3dF5gH7jK9lZ1xC2vB4nM6k8L0pO2iU4yT6rE8wQ0aS2dF4gH6')
-                });
-            } catch (e) {
-                console.log('Подписка не требуется для учебного проекта');
-            }
-            localStorage.setItem('pushEnabled', 'true');
-            btn.textContent = 'Отключить уведомления';
-            testBtn.style.display = 'inline-block';
-            status.textContent = 'Уведомления включены. Нажмите "Тест"';
+          try {
+            await registration.pushManager.subscribe({
+              userVisibleOnly: true,
+              applicationServerKey: Uint8Array.from([
+                4, 181, 231, 162, 72, 199, 213, 143, 201, 130, 240, 191, 162, 59, 178, 61,
+                251, 215, 31, 51, 230, 164, 55, 173, 78, 162, 61, 154, 18, 221, 21, 231,
+                161, 175, 43, 61, 164, 49, 215, 17, 12, 174, 12, 183, 38, 75, 103, 12,
+                183, 163, 140, 126, 90, 232, 134, 228, 26, 162, 51, 145, 232, 219, 17, 142, 175
+              ])
+            });
+            status.textContent = 'Включено';
+          } catch (error) {
+            status.textContent = 'Включено (без сервера)';
+          }
         } else {
-            status.textContent = 'Разрешение отклонено';
+          status.textContent = 'Разрешение отклонено';
         }
+      }
+      updateUI();
     }
-}
 
-async function testPush() {
-    const reg = await navigator.serviceWorker.ready;
-    if (reg.active) {
-        reg.active.postMessage({
-            type: 'TEST_PUSH',
-            title: 'Возвращайтесь снова!',
-            body: 'Мы скучаем по вам! Загляните в приложение.'
+    async function testPush() {
+      const registration = await navigator.serviceWorker.ready;
+      if (registration.active) {
+        registration.active.postMessage({
+          type: 'TEST_PUSH',
+          title: 'Возвращайтесь!',
+          body: 'Заходи в приложение'
         });
+      }
     }
-}
+  </script>
 
-async function updatePushUI() {
-    const btn = document.getElementById('pushBtn');
-    const testBtn = document.getElementById('testPushBtn');
-    const status = document.getElementById('pushStatus');
-    if (!btn) return;
-
-    const reg = await navigator.serviceWorker.ready;
-    const sub = await reg.pushManager.getSubscription();
-
-    if (sub || localStorage.getItem('pushEnabled') === 'true') {
-        btn.textContent = 'Отключить уведомления';
-        testBtn.style.display = 'inline-block';
-        status.textContent = 'Уведомления включены. Нажмите "Тест"';
-    } else {
-        btn.textContent = 'Включить уведомления';
-        testBtn.style.display = 'inline-block';
-        status.textContent = 'Уведомления отключены';
-    }
-}
-
-function urlBase64ToUint8Array(base64String) {
-    const padding = '='.repeat((4 - base64String.length % 4) % 4);
-    const base64 = (base64String + padding).replace(/\-/g, '+').replace(/_/g, '/');
-    const rawData = window.atob(base64);
-    return Uint8Array.from([...rawData].map((char) => char.charCodeAt(0)));
-}
-</script>
+  <script
+    type="module"
+    src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496"
+    integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ=="
+    data-cf-beacon='{"version":"2024.11.0","token":"4655f3c58dd6497fb7ddb85b68480db7","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+    crossorigin="anonymous"
+  ></script>
 </body>
 </html>

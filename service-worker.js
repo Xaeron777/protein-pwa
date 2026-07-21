@@ -1,5 +1,4 @@
 const CACHE = 'protein-app-v1';
-
 const ASSETS = [
   '/protein-pwa/',
   '/protein-pwa/index.html',
@@ -14,90 +13,93 @@ const ASSETS = [
   '/protein-pwa/icons/icon-512.png'
 ];
 
-self.addEventListener('install', (event) => {
+self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(ASSETS))
+    caches.open(CACHE)
+      .then(cache => cache.addAll(ASSETS))
   );
   self.skipWaiting();
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
-        keys.filter((key) => key !== CACHE).map((key) => caches.delete(key))
-      )
-    )
+    caches.keys()
+      .then(keys => Promise.all(
+        keys.filter(key => key !== CACHE)
+          .map(key => caches.delete(key))
+      ))
   );
   event.waitUntil(self.clients.claim());
 });
 
-self.addEventListener('fetch', (event) => {
-  const req = event.request;
+self.addEventListener('fetch', event => {
+  const request = event.request;
 
-  if (req.method !== 'GET') {
-    return;
-  }
+  if (request.method !== 'GET') return;
 
-  if (req.mode === 'navigate') {
+  if (request.mode === 'navigate') {
     event.respondWith(
-      caches.match(req).then((cached) => {
-        if (cached) return cached;
-        return fetch(req).catch(() => caches.match('/protein-pwa/offline.html'));
-      })
+      caches.match(request)
+        .then(cached => cached || fetch(request)
+          .catch(() => caches.match('/protein-pwa/offline.html'))
+        )
     );
     return;
   }
 
   event.respondWith(
-    caches.match(req).then((cached) => {
-      if (cached) return cached;
-      return fetch(req).then((response) => {
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
-        }
-        const clone = response.clone();
-        caches.open(CACHE).then((cache) => cache.put(req, clone));
-        return response;
-      });
-    })
+    caches.match(request)
+      .then(cached => {
+        if (cached) return cached;
+
+        return fetch(request)
+          .then(response => {
+            if (!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
+
+            const responseClone = response.clone();
+            caches.open(CACHE)
+              .then(cache => cache.put(request, responseClone));
+
+            return response;
+          });
+      })
   );
 });
 
-
-self.addEventListener('push', (event) => {
+self.addEventListener('push', event => {
   const data = event.data ? event.data.json() : {};
   event.waitUntil(
-    self.registration.showNotification(data.title || 'Возвращайтесь снова!', {
-      body: data.body || 'Мы скучаем по вам! Загляните в приложение.',
+    self.registration.showNotification(data.title || 'Возвращайтесь!', {
+      body: data.body || 'Заходи в приложение',
       icon: '/protein-pwa/icons/icon-192.png',
-      badge: '/protein-pwa/icons/icon-192.png',
       data: { url: data.url || '/protein-pwa/' }
     })
   );
 });
 
-
-self.addEventListener('notificationclick', (event) => {
+self.addEventListener('notificationclick', event => {
   event.notification.close();
   const url = event.notification.data ? event.notification.data.url : '/protein-pwa/';
   event.waitUntil(
-    clients.matchAll({ type: 'window' }).then((windows) => {
-      for (const win of windows) {
-        if (win.url === url) return win.focus();
-      }
-      return clients.openWindow(url);
-    })
+    clients.matchAll({ type: 'window' })
+      .then(windowClients => {
+        for (const client of windowClients) {
+          if (client.url === url) {
+            return client.focus();
+          }
+        }
+        return clients.openWindow(url);
+      })
   );
 });
 
-
-self.addEventListener('message', (event) => {
+self.addEventListener('message', event => {
   if (event.data && event.data.type === 'TEST_PUSH') {
-    self.registration.showNotification(event.data.title || 'Возвращайтесь снова!', {
-      body: event.data.body || 'Мы скучаем по вам! Загляните в приложение.',
+    self.registration.showNotification(event.data.title || 'Возвращайтесь!', {
+      body: event.data.body || 'Заходи в приложение',
       icon: '/protein-pwa/icons/icon-192.png',
-      badge: '/protein-pwa/icons/icon-192.png',
       data: { url: '/protein-pwa/' }
     });
   }
